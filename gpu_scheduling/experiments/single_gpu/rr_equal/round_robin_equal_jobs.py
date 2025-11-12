@@ -5,13 +5,13 @@ jobs = [
                 name=str("gpt2-small, first instance"),
                 cmd=["python", 
                      "gpu_scheduling/model_training_scripts/train_gpt2.py", 
-                     "--checkpoint_dir", "./proc1"]
+                     "--checkpoint_dir", "gpu_scheduling/experiments/single_gpu/rr_equal_time/proc1"]
             ),
             wq.Job(
                 name=str("gpt2-small, second instance"),
                 cmd=["python", 
                      "gpu_scheduling/model_training_scripts/train_gpt2.py",  
-                     "--checkpoint_dir", "./proc2"]
+                     "--checkpoint_dir", "gpu_scheduling/experiments/single_gpu/rr_equal_time/proc2"]
             )
         ]
 

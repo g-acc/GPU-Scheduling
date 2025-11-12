@@ -1,0 +1,34 @@
+from gpu_scheduling import workqueue as wq
+import random 
+
+jobs = [
+            wq.Job(
+                name=str("gpt2-small"),
+                cmd=["python", 
+                     "gpu_scheduling/model_training_scripts/train_gpt2.py", 
+                     "--checkpoint_dir", "gpu_scheduling/experiments/single_gpu/lottery_memory_proportional/small"]
+            ),
+            wq.Job(
+                name=str("gpt2-large"),
+                cmd=["python", 
+                     "gpu_scheduling/model_training_scripts/train_gpt2.py",  
+                     "--checkpoint_dir", "gpu_scheduling/experiments/single_gpu/lottery_memory_proportional/big",
+                     "--model_name", "gpt2-large"]
+            )
+        ]
+
+def get_next_job(jobs: list[wq.Job]):
+    # Assign lottery tickets based on memory usage.
+    # For the first lottery, split it equally (since we don't have memory usage yet)
+    tickets = [-2, 2] if (jobs[0].memory_usage_bytes == 0 or jobs[1].memory_usage_bytes == 0) \
+        else [-1 * jobs[0].memory_usage_bytes, jobs[1].memory_usage_bytes]
+    lotto = random.randrange(tickets[0], tickets[1])
+    print("Lottery tickets", tickets, "winning number", lotto)
+    if lotto >= 0:
+        return 1 
+    return 0
+
+if __name__ == "__main__":
+    round_robin_equal_time_scheduler = wq.Scheduler(get_next_job_fn=get_next_job, get_working_time_fn=lambda _: 120)
+    exp = wq.WorkQueue(jobs, round_robin_equal_time_scheduler, "gpu_scheduling/experiments/single_gpu/lottery_memory_proportional/")
+    exp.manage_schedule()
