@@ -1,0 +1,7 @@
+timestamp,job_name,working_time,total_running_time,gpu0_mem_used,gpu0_mem_total,gpu0_util_gpu,gpu0_util_mem
+1763011400,"gpt2-small, first instance",60,60,17399218176,25769803776,100,50
+1763011464,"gpt2-small, second instance",60,60,24391122944,25769803776,100,55
+1763011527,"gpt2-small, first instance",60,120,20033241088,25769803776,98,53
+1763011593,"gpt2-small, second instance",60,120,22338011136,25769803776,98,50
+1763011660,"gpt2-small, first instance",60,180,582156288,25769803776,0,0
+1763011720,"gpt2-small, second instance",60,180,582156288,25769803776,0,0
