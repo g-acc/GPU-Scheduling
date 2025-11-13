@@ -13,6 +13,7 @@ import signal
 import sys
 import time
 import csv
+import psutil
 
 # -----------------------------
 # 1. Parse arguments
@@ -177,9 +178,9 @@ for step, batch in enumerate(loader):
                 })
         elif device.type == "mps":
             # MPS stats via PyTorch
-            mem_total = torch.mps.get_device_properties(0).total_memory
-            mem_alloc = torch.mps.memory_allocated()
-            row.update({"mps_mem_used": mem_alloc, "mps_mem_total": mem_total})
+            mem_used = psutil.virtual_memory().used
+            mem_total = psutil.virtual_memory().total
+            row.update({"mps_mem_used": mem_used, "mps_mem_total": mem_total})
 
         csv_writer.writerow(row)
         csv_file.flush()
