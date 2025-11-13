@@ -5,17 +5,17 @@ jobs = [
                 name=str("gpt2-small, first instance"),
                 cmd=["python", 
                      "gpu_scheduling/model_training_scripts/train_gpt2.py", 
-                     "--checkpoint_dir", "gpu_scheduling/experiments/single_gpu/rr_equal_time/proc1"]
+                     "--checkpoint_dir", "gpu_scheduling/experiments/single_gpu/rr_equal/proc1"]
             ),
             wq.Job(
                 name=str("gpt2-small, second instance"),
                 cmd=["python", 
                      "gpu_scheduling/model_training_scripts/train_gpt2.py",  
-                     "--checkpoint_dir", "gpu_scheduling/experiments/single_gpu/rr_equal_time/proc2"]
+                     "--checkpoint_dir", "gpu_scheduling/experiments/single_gpu/rr_equal/proc2"]
             )
         ]
 
 if __name__ == "__main__":
-    round_robin_equal_time_scheduler = wq.Scheduler(get_next_job_fn=lambda _: 0, get_working_time_fn=lambda _: 60)
-    exp = wq.WorkQueue(jobs, round_robin_equal_time_scheduler, "gpu_scheduling/experiments/single_gpu/rr_equal_time/")
+    round_robin_equal_time_scheduler = wq.Scheduler(get_next_job_fn=lambda _: 0, get_working_time_fn=lambda _: 120)
+    exp = wq.WorkQueue(jobs, round_robin_equal_time_scheduler, "gpu_scheduling/experiments/single_gpu/rr_equal/")
     exp.manage_schedule()
