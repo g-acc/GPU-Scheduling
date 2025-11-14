@@ -18,32 +18,38 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).parent.absolute()
 # Get the project root (3 levels up: single_gpu -> experiments -> gpu_scheduling -> project root)
 PROJECT_ROOT = SCRIPT_DIR.parent.parent.parent
+# Results directory for organized output
+RESULTS_DIR = PROJECT_ROOT / "results" / "single_gpu"
 
 # Add project root to Python path so imports work when running directly
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-# Define all scheduling scripts to run
+# Define all scheduling scripts to run with their output directory names
 SCHEDULING_SCRIPTS = [
     {
         "name": "Round Robin Equal Jobs",
         "path": SCRIPT_DIR / "rr_equal" / "round_robin_equal_jobs.py",
-        "module": "gpu_scheduling.experiments.single_gpu.rr_equal.round_robin_equal_jobs"
+        "module": "gpu_scheduling.experiments.single_gpu.rr_equal.round_robin_equal_jobs",
+        "output_dir": "rr_equal"
     },
     {
         "name": "Round Robin Big and Small Jobs",
         "path": SCRIPT_DIR / "rr_big_and_small" / "round_robin_big_and_small_jobs.py",
-        "module": "gpu_scheduling.experiments.single_gpu.rr_big_and_small.round_robin_big_and_small_jobs"
+        "module": "gpu_scheduling.experiments.single_gpu.rr_big_and_small.round_robin_big_and_small_jobs",
+        "output_dir": "rr_big_and_small"
     },
     {
         "name": "Lottery Memory Proportional",
         "path": SCRIPT_DIR / "lottery_memory_proportional" / "lottery_memory_proportional.py",
-        "module": "gpu_scheduling.experiments.single_gpu.lottery_memory_proportional.lottery_memory_proportional"
+        "module": "gpu_scheduling.experiments.single_gpu.lottery_memory_proportional.lottery_memory_proportional",
+        "output_dir": "lottery_memory_proportional"
     },
     {
         "name": "Lottery Memory Inverse Proportional",
         "path": SCRIPT_DIR / "lottery_memory_inv_proportional" / "lottery_memory_inv_proportional.py",
-        "module": "gpu_scheduling.experiments.single_gpu.lottery_memory_inv_proportional.lottery_memory_inv_proportional"
+        "module": "gpu_scheduling.experiments.single_gpu.lottery_memory_inv_proportional.lottery_memory_inv_proportional",
+        "output_dir": "lottery_memory_inv_proportional"
     }
 ]
 
@@ -53,10 +59,12 @@ def run_script(script_info):
     name = script_info["name"]
     path = script_info["path"]
     module = script_info["module"]
+    output_dir_name = script_info["output_dir"]
     
     print(f"\n{'='*80}")
     print(f"Running: {name}")
     print(f"Script: {path}")
+    print(f"Output directory: results/single_gpu/{output_dir_name}/")
     print(f"{'='*80}\n")
     
     # Check if script exists
@@ -96,6 +104,10 @@ def main():
     print("="*80)
     print("GPU Scheduling Experiments - Running All Schedulers")
     print("="*80)
+    
+    # Create results directory structure
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"\n📁 Results will be saved to: {RESULTS_DIR}\n")
     
     results = []
     for script_info in SCHEDULING_SCRIPTS:

@@ -1,23 +1,33 @@
 from gpu_scheduling import workqueue as wq
+from pathlib import Path
+
+# Organized output directory structure
+OUTPUT_DIR = Path("results/single_gpu/rr_equal")
+CHECKPOINT_DIR = OUTPUT_DIR / "checkpoints"
+CSV_DIR = OUTPUT_DIR / "csvs"
+
+# Create directories if they don't exist
+CHECKPOINT_DIR.mkdir(parents=True, exist_ok=True)
+CSV_DIR.mkdir(parents=True, exist_ok=True)
 
 jobs = [
-            wq.Job(
-                name=str("gpt2-small, first instance"),
-                cmd=["python", 
-                     "gpu_scheduling/model_training_scripts/train_gpt2.py", 
-                     "--checkpoint_dir", "gpu_scheduling/experiments/single_gpu/rr_equal/proc1",
-                     "--csv_file", "gpu_scheduling/experiments/single_gpu/rr_equal/gpt2_small_first_instance.csv"]
-            ),
-            wq.Job(
-                name=str("gpt2-small, second instance"),
-                cmd=["python", 
-                     "gpu_scheduling/model_training_scripts/train_gpt2.py",  
-                     "--checkpoint_dir", "gpu_scheduling/experiments/single_gpu/rr_equal/proc2",
-                     "--csv_file", "gpu_scheduling/experiments/single_gpu/rr_equal/gpt2_small_second_instance.csv"]
-            )
-        ]
+    wq.Job(
+        name=str("gpt2-small, first instance"),
+        cmd=["python", 
+             "gpu_scheduling/model_training_scripts/train_gpt2.py", 
+             "--checkpoint_dir", str(CHECKPOINT_DIR / "proc1"),
+             "--csv_file", str(CSV_DIR / "gpt2_small_first_instance.csv")]
+    ),
+    wq.Job(
+        name=str("gpt2-small, second instance"),
+        cmd=["python", 
+             "gpu_scheduling/model_training_scripts/train_gpt2.py",  
+             "--checkpoint_dir", str(CHECKPOINT_DIR / "proc2"),
+             "--csv_file", str(CSV_DIR / "gpt2_small_second_instance.csv")]
+    )
+]
 
 if __name__ == "__main__":
     round_robin_equal_time_scheduler = wq.Scheduler(get_next_job_fn=lambda _: 0, get_working_time_fn=lambda _: 60)
-    exp = wq.WorkQueue(jobs, round_robin_equal_time_scheduler, "gpu_scheduling/experiments/single_gpu/rr_equal/")
+    exp = wq.WorkQueue(jobs, round_robin_equal_time_scheduler, str(OUTPUT_DIR))
     exp.manage_schedule()
