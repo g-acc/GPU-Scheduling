@@ -10,9 +10,14 @@ authors = [{ name = "Nikhil Jain" }]
 readme = "README.md"
 requires-python = ">=3.8"
 
-# TODO: add deps
 dependencies = [
+  "datasets",
   "torch>=2.0",
+  "nvidia-ml-py",
+  "pydantic",
+  "psutil",
+  "transformers",
+  "gymnasium",
   "numpy"
 ]
 

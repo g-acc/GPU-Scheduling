@@ -1,3 +1,0 @@
-datasets
-pytorch
-nvidia-ml-py
