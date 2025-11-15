@@ -25,12 +25,12 @@ jobs = [
              "--csv_file", str(CSV_DIR / "gpt2_small.csv")]
     ),
     wq.Job(
-        name=str("gpt2-large"),
+        name=str("gpt2"),
         cmd=["python", 
              "gpu_scheduling/model_training_scripts/train_gpt2.py",  
              "--checkpoint_dir", str(CHECKPOINT_DIR / "big"),
-             "--csv_file", str(CSV_DIR / "gpt2_large.csv"),
-             "--model_name", "gpt2-large"]
+             "--csv_file", str(CSV_DIR / "gpt2.csv"),
+             "--model_name", "gpt2"]
     )
 ]
 

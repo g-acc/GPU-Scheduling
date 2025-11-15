@@ -21,21 +21,21 @@ jobs = [
         name=str("first gpt2-small"),
         cmd=["python", 
              "gpu_scheduling/model_training_scripts/train_gpt2.py", 
-             "--checkpoint_dir", str(CHECKPOINT_DIR / "small"),
+             "--checkpoint_dir", str(CHECKPOINT_DIR / "small_first"),
              "--csv_file", str(CSV_DIR / "gpt2_small.csv")]
     )
     wq.Job(
         name=str("second gpt2-small"),
         cmd=["python", 
              "gpu_scheduling/model_training_scripts/train_gpt2.py", 
-             "--checkpoint_dir", str(CHECKPOINT_DIR / "small"),
+             "--checkpoint_dir", str(CHECKPOINT_DIR / "small_second"),
              "--csv_file", str(CSV_DIR / "gpt2_small.csv")]
     ),
     wq.Job(
         name=str("third gpt2-small"),
         cmd=["python", 
              "gpu_scheduling/model_training_scripts/train_gpt2.py", 
-             "--checkpoint_dir", str(CHECKPOINT_DIR / "small"),
+             "--checkpoint_dir", str(CHECKPOINT_DIR / "small_third"),
              "--csv_file", str(CSV_DIR / "gpt2_small.csv")]
     ),
     wq.Job(
@@ -43,8 +43,8 @@ jobs = [
         cmd=["python", 
              "gpu_scheduling/model_training_scripts/train_gpt2.py",  
              "--checkpoint_dir", str(CHECKPOINT_DIR / "big"),
-             "--csv_file", str(CSV_DIR / "gpt2_large.csv"),
-             "--model_name", "gpt2-large"]
+             "--csv_file", str(CSV_DIR / "gpt2.csv"),
+             "--model_name", "gpt2"]
     )
 ]
 

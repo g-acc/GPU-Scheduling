@@ -23,8 +23,8 @@ jobs = [
         cmd=["python", 
              "gpu_scheduling/model_training_scripts/train_gpt2.py",  
              "--checkpoint_dir", str(CHECKPOINT_DIR / "big"),
-             "--csv_file", str(CSV_DIR / "gpt2_large.csv"),
-             "--model_name", "gpt2-large"]
+             "--csv_file", str(CSV_DIR / "gpt2.csv"),
+             "--model_name", "gpt2"]
     )
 ]
 
