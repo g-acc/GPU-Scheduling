@@ -10,8 +10,8 @@ __pycache__/
 results/**/checkpoints/
 
 # Track CSV files only
-!results/**/csvs/*.csv     # include CSVs
-!results/**/timeseries.csv  # include timeseries.csv
+!results/single_gpu/**/csvs/*.csv     # include CSVs
+!results/single_gpu/**/timeseries.csv  # include timeseries.csv
 
 # Ignore everything else inside results
-results/**
+results/single_gpu/**
