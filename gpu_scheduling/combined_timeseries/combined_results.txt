@@ -1,0 +1,218 @@
+Found 8 CSV files.
+
+
+==== Results for gpu_scheduling/combined_timeseries/lottery_mem_proportional_one_big_many_small.csv ====
+
+Working Time per Job (sec):
+- small job 1: 208.00
+- small job 2: 176.00
+- small job 3: 193.00
+- medium job: 528.00
+
+Waiting Time per Job (sec):
+- small job 1: 449.00
+- small job 2: 193.00
+- small job 3: 55.00
+- medium job: 577.00
+
+Makespan: 1105.00 sec
+Throughput (#jobs/makespan): 0.003620
+
+Response Time per Job (seconds):
+- small job 1: 657.00
+- small job 2: 369.00
+- small job 3: 248.00
+- medium job: 1105.00
+
+Slowdown per Job:
+- small job 1: 3.16
+- small job 2: 2.10
+- small job 3: 1.28
+- medium job: 2.09
+
+Jain Fairness Index over slowdown: 0.9041
+
+==== Results for gpu_scheduling/combined_timeseries/lottery_memory_proportional_one_big_one_small_combined_1.csv ====
+
+Working Time per Job (sec):
+- small job: 226.00
+- medium job: 732.00
+
+Waiting Time per Job (sec):
+- small job: 225.00
+- medium job: 226.00
+
+Makespan: 958.00 sec
+Throughput (#jobs/makespan): 0.002088
+
+Response Time per Job (seconds):
+- small job: 451.00
+- medium job: 958.00
+
+Slowdown per Job:
+- small job: 2.00
+- medium job: 1.31
+
+Jain Fairness Index over slowdown: 0.9586
+
+==== Results for gpu_scheduling/combined_timeseries/rr_big_and_small_200s.csv ====
+
+Working Time per Job (sec):
+- small job: 186.00
+- medium job: 581.00
+
+Waiting Time per Job (sec):
+- small job: 175.00
+- medium job: 186.00
+
+Makespan: 767.00 sec
+Throughput (#jobs/makespan): 0.002608
+
+Response Time per Job (seconds):
+- small job: 361.00
+- medium job: 767.00
+
+Slowdown per Job:
+- small job: 1.94
+- medium job: 1.32
+
+Jain Fairness Index over slowdown: 0.9650
+
+==== Results for gpu_scheduling/combined_timeseries/rr_big_and_small_75s_quanta.csv ====
+
+Working Time per Job (sec):
+- small job: 248.00
+- medium job: 666.00
+
+Waiting Time per Job (sec):
+- small job: 195.00
+- medium job: 248.00
+
+Makespan: 914.00 sec
+Throughput (#jobs/makespan): 0.002188
+
+Response Time per Job (seconds):
+- small job: 443.00
+- medium job: 914.00
+
+Slowdown per Job:
+- small job: 1.79
+- medium job: 1.37
+
+Jain Fairness Index over slowdown: 0.9831
+
+==== Results for gpu_scheduling/combined_timeseries/rr_equal_120s_quanta.csv ====
+
+Working Time per Job (sec):
+- job_0: 171.00
+- job_1: 245.00
+
+Waiting Time per Job (sec):
+- job_0: 123.00
+- job_1: 171.00
+
+Makespan: 416.00 sec
+Throughput (#jobs/makespan): 0.004808
+
+Response Time per Job (seconds):
+- job_0: 294.00
+- job_1: 416.00
+
+Slowdown per Job:
+- job_0: 1.72
+- job_1: 1.70
+
+Jain Fairness Index over slowdown: 1.0000
+
+==== Results for gpu_scheduling/combined_timeseries/rr_equal_60s_quanta.csv ====
+
+Working Time per Job (sec):
+- small job 0: 213.00
+- small job 1: 247.00
+
+Waiting Time per Job (sec):
+- small job 0: 196.00
+- small job 1: 213.00
+
+Makespan: 460.00 sec
+Throughput (#jobs/makespan): 0.004348
+
+Response Time per Job (seconds):
+- small job 0: 409.00
+- small job 1: 460.00
+
+Slowdown per Job:
+- small job 0: 1.92
+- small job 1: 1.86
+
+Jain Fairness Index over slowdown: 0.9998
+
+==== Results for gpu_scheduling/combined_timeseries/rr_one_big_many_small_200s_quanta.csv ====
+
+Working Time per Job (sec):
+- small_job_0: 186.00
+- small_job_1: 208.00
+- small_job_2: 196.00
+- small_job_3: 198.00
+- medium_job: 353.00
+
+Waiting Time per Job (sec):
+- small_job_0: 176.00
+- small_job_1: 558.00
+- small_job_2: 362.00
+- small_job_3: 766.00
+- medium_job: 788.00
+
+Makespan: 1141.00 sec
+Throughput (#jobs/makespan): 0.004382
+
+Response Time per Job (seconds):
+- small_job_0: 362.00
+- small_job_1: 766.00
+- small_job_2: 558.00
+- small_job_3: 964.00
+- medium_job: 1141.00
+
+Slowdown per Job:
+- small_job_0: 1.95
+- small_job_1: 3.68
+- small_job_2: 2.85
+- small_job_3: 4.87
+- medium_job: 3.23
+
+Jain Fairness Index over slowdown: 0.9105
+
+==== Results for gpu_scheduling/combined_timeseries/rr_one_big_many_small_75s_quanta.csv ====
+
+Working Time per Job (sec):
+- small_job_0: 241.00
+- small_job_1: 242.00
+- small_job_2: 233.00
+- small_job_3: 229.00
+- medium job: 317.00
+
+Waiting Time per Job (sec):
+- small_job_0: 690.00
+- small_job_1: 766.00
+- small_job_2: 849.00
+- small_job_3: 929.00
+- medium job: 945.00
+
+Makespan: 1262.00 sec
+Throughput (#jobs/makespan): 0.003962
+
+Response Time per Job (seconds):
+- small_job_0: 931.00
+- small_job_1: 1008.00
+- small_job_2: 1082.00
+- small_job_3: 1158.00
+- medium job: 1262.00
+
+Slowdown per Job:
+- small_job_0: 3.86
+- small_job_1: 4.17
+- small_job_2: 4.64
+- small_job_3: 5.06
+- medium job: 3.98
+
+Jain Fairness Index over slowdown: 0.9905
