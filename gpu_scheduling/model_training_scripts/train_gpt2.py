@@ -33,6 +33,7 @@ args = parser.parse_args()
 # -----------------------------
 # 2. Device setup
 # -----------------------------
+overhead_start = time.perf_counter()
 device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 print(f"Using device: {device}")
 
@@ -50,6 +51,7 @@ os.makedirs(args.checkpoint_dir, exist_ok=True)
 ckpt_path = os.path.join(args.checkpoint_dir, "latest.pt")
 
 def save_checkpoint(step):
+    start = time.perf_counter()
     tmp_path = ckpt_path + ".tmp"
     torch.save({
         "step": step,
@@ -57,7 +59,8 @@ def save_checkpoint(step):
         "optimizer_state": optimizer.state_dict()
     }, tmp_path)
     os.replace(tmp_path, ckpt_path)
-    print(f"[Checkpoint] Saved at step {step}")
+    end = time.perf_counter()
+    print(f"[Checkpoint] Saved at step {step}, took {end - start} ms")
 
 current_step = 0
 
@@ -100,12 +103,15 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
 # -----------------------------
 start_step = 0
 if os.path.exists(ckpt_path):
+    start = time.perf_counter()
     print(f"Resuming from checkpoint {ckpt_path}")
     checkpoint = torch.load(ckpt_path, map_location=device)
     model.load_state_dict(checkpoint["model_state"])
     optimizer.load_state_dict(checkpoint["optimizer_state"])
     start_step = checkpoint["step"] + 1
     current_step = start_step
+    end = time.perf_counter()
+    print("Loading from checkpoint took {end - start} seconds")
 
 # -----------------------------
 # 9. CSV setup
@@ -147,6 +153,8 @@ signal.signal(signal.SIGINT, handle_exit)
 # -----------------------------
 # 11. Training loop
 # -----------------------------
+overhead_end = time.perf_counter()
+print("Total overhead {overhead_end - overhead_start} seconds")
 model.train()
 for step, batch in enumerate(loader):
     if step < start_step:
